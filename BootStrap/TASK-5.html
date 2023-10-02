@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <title>Document</title>
+    <style>
+        /* Define CSS classes for border and error */
+        .custom-border {
+            border: 1px solid #ced4da;
+            border-radius: 5px; /* Default border color */
+        }
+
+        .custom-border-error {
+            border: 2px solid red;
+            border-radius: 5px; /* Border color on error */
+        }
+
+        /* Define CSS class for cross mark */
+        .custom-cross-mark {
+            position: absolute;
+            right: 10px; /* Adjust the position as needed */
+            top: 50%;
+            transform: translateY(-50%);
+            color: red; /* Set the color to red */
+            display: none; /* Initially hide the cross mark */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="allthings" style="align-items: center; display: flex; flex-direction: column; gap: 10px;" onsubmit="validateForm(event)">
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="firstname" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">First Name </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-firstname">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-person-fill"></i>
+                        </span>
+                        <input type="text" class="form-control custom-border" id="firstname" placeholder="First Name">
+                        <span class="custom-cross-mark" id="cross-mark-firstname">&#10006;</span>
+                    </div>
+                    <small class="text-danger" id="firstnameerror" style="display: none;">Please supply your first name</small>
+                </div>
+            </div>
+			<div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="lastname" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">Last Name </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-lastname">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-person-fill"></i>
+                        </span>
+                        <input type="text" class="form-control custom-border" id="lastname" placeholder="Last Name">
+                        <span class="custom-cross-mark" id="cross-mark-lastname">&#10006;</span>
+                    </div>
+                    <small class="text-danger" id="lastnameerror" style="display: none;">Please supply your last name</small>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="email" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">E-mail </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-email">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-envelope-fill"></i>
+                        </span>
+                        <input type="text" class="form-control custom-border" id="email" placeholder="E-mail Address">
+                        <span class="custom-cross-mark" id="cross-mark-email">&#10006;</span>
+                    </div>
+                    <small class="text-danger" id="emailerror" style="display: none;">Please supply your email address</small>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="phone" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">Phone# </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-phone">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-phone-fill"></i>
+                        </span>
+                        <input type="number" class="form-control custom-border" id="phone" placeholder="(845)555-1212">
+                        <span class="custom-cross-mark" id="cross-mark-phone">&#10006;</span>
+                    </div>
+                    <small class="text-danger" id="phoneerror" style="display: none;">Please supply your phone number</small>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="address" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">Address </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-address">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-house-fill"></i>
+                        </span>
+                        <input type="text" class="form-control custom-border" id="address" placeholder="Address">
+                        <span class="custom-cross-mark" id="cross-mark-address">&#10006;</span>
+                    </div>
+                    <small class="text-danger" id="addresserror" style="display: none;">Please supply your street address</small>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="city" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">City </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-city">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-house-fill"></i>
+                        </span>
+                        <input type="text" class="form-control custom-border" id="city" placeholder="City">
+                        <span class="custom-cross-mark" id="cross-mark-city">&#10006;</span>
+                    </div>
+                    <small class="text-danger" id="cityerror" style="display: none;">Please supply your city</small>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="state" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">State </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-state">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-list-task"></i>
+                        </span>
+                        <select class="form-control custom-border" id="city" style="width: 207px;">
+                            <option value="">Please select your state</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="tamil nadu">Tamil Nadu</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="state" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">Do you have hosting? </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-hosting" style="width: 250px; display: flex; flex-direction: row; gap: 20px;">
+                        <input type="radio" id="yes" name="input-group custom-border" value="Yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="input-group custom-border" value="Yes">
+                        <label for="no">No</label>
+                    </div>
+                    <small class="text-danger" id="optionerror" style="display: none;">Please choose any one option</small>
+                </div>
+            </div>
+            <div class="allrows" style="display: flex; flex-direction: row; gap: 10px;">
+                <label for="project" class="form-label" style="width: 120px; margin-bottom: 0; justify-content: center;">Project Description </label>
+                <div class="include-error" style="display: flex; flex-direction: column; width: 100%;">
+                    <div class="input-group custom-border" id="input-container-project">
+                        <span class="input-group-text custom-border">
+                            <i class="bi bi-pen"></i>
+                        </span>
+                        <textarea id="project" name="project" rows="3" cols="25"></textarea>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-warning">Send</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+    crossorigin="anonymous"></script>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            
+            const firstNameInput = document.getElementById("firstname");
+            const firstNameValue = firstNameInput.value.trim(); 
+            const firstNameError = document.getElementById("firstnameerror");
+            const crossMarkFirstName = document.getElementById("cross-mark-firstname");
+
+            
+            if (firstNameValue === "") {
+                
+                firstNameError.style.display = "block";
+                document.getElementById("input-container-firstname").classList.add("custom-border-error");
+                crossMarkFirstName.style.display = "block";
+            } else {
+                firstNameError.style.display = "none";
+                document.getElementById("input-container-firstname").classList.remove("custom-border-error");
+                crossMarkFirstName.style.display = "none";
+            }
+
+            const lastNameInput = document.getElementById("lastname");
+            const lastNameValue = lastNameInput.value.trim(); 
+            const lastNameError = document.getElementById("lastnameerror");
+            const crossMarkLastName = document.getElementById("cross-mark-lastname");
+
+            if (lastNameValue === "") {
+                lastNameError.style.display = "block";
+                document.getElementById("input-container-lastname").classList.add("custom-border-error");
+                crossMarkLastName.style.display = "block";
+            } else {
+                lastNameError.style.display = "none";
+                document.getElementById("input-container-lastname").classList.remove("custom-border-error");
+                crossMarkLastName.style.display = "none";
+            }
+
+            const emailInput = document.getElementById("email");
+            const emailValue = emailInput.value.trim(); 
+            const emailError = document.getElementById("emailerror");
+            const crossMarkemail = document.getElementById("cross-mark-email");
+
+            if (emailValue === "") {
+                emailError.style.display = "block";
+                document.getElementById("input-container-email").classList.add("custom-border-error");
+                crossMarkemail.style.display = "block";
+            } else {
+                emailError.style.display = "none";
+                document.getElementById("input-container-email").classList.remove("custom-border-error");
+                crossMarkemail.style.display = "none";
+            }
+
+            const phoneInput = document.getElementById("phone");
+            const phoneValue = phoneInput.value.trim(); 
+            const phoneError = document.getElementById("phoneerror");
+            const crossMarkphone = document.getElementById("cross-mark-phone");
+
+            if (phoneValue === "") {
+                phoneError.style.display = "block";
+                document.getElementById("input-container-phone").classList.add("custom-border-error");
+                crossMarkphone.style.display = "block";
+            } else {
+                phoneError.style.display = "none";
+                document.getElementById("input-container-phone").classList.remove("custom-border-error");
+                crossMarkphone.style.display = "none";
+            }
+
+            const addressInput = document.getElementById("address");
+            const addressValue = addressInput.value.trim(); 
+            const addressError = document.getElementById("addresserror");
+            const crossMarkaddress = document.getElementById("cross-mark-address");
+
+            if (addressValue === "") {
+                addressError.style.display = "block";
+                document.getElementById("input-container-address").classList.add("custom-border-error");
+                crossMarkaddress.style.display = "block";
+            } else {
+                addressError.style.display = "none";
+                document.getElementById("input-container-address").classList.remove("custom-border-error");
+                crossMarkaddress.style.display = "none";
+            }
+
+            const cityInput = document.getElementById("city");
+            const cityValue = cityInput.value.trim(); 
+            const cityError = document.getElementById("cityerror");
+            const crossMarkcity = document.getElementById("cross-mark-city");
+
+            if (cityValue === "") {
+                cityError.style.display = "block";
+                document.getElementById("input-container-city").classList.add("custom-border-error");
+                crossMarkcity.style.display = "block";
+            } else {
+                cityError.style.display = "none";
+                document.getElementById("input-container-city").classList.remove("custom-border-error");
+                crossMarkcity.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
