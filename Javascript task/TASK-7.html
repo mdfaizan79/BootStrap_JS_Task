@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <style>
+     
+      .button-container {
+         text-align: center;
+         margin-top: 20px; 
+      }
+
+      .button {
+         background-color: #007bff; 
+         color: #fff; 
+         border: none;
+         padding: 10px 20px;
+         margin: 5px;
+         cursor: pointer;
+         border-radius: 5px; 
+         font-size: 16px;
+         transition: background-color 0.3s; 
+      }
+
+      .button:hover {
+         background-color: #0056b3;
+      }
+   </style>
+   <script type="text/javascript">
+      var img = null;
+      var intervalId = null;
+      var currentPosition = 0; 
+
+      function init() {
+         img = document.getElementById('myimg');
+         img.style.position = 'relative'; 
+         img.style.left = '0px'; // Set initial left position
+      }
+
+      function moveRight() {
+         currentPosition += 100; // Move by 100 pixels
+         img.style.left = currentPosition + 'px';
+      }
+
+      function startMovement() {
+         intervalId = setInterval(moveRight, 1000);
+      }
+
+      function stopMovement() {
+         clearInterval(intervalId);
+      }
+
+      window.onload = init;
+   </script>
+</head>
+
+<body>
+   <form>
+      <img id="myimg"  src="Train.png" alt="">
+      <div class="button-container">
+         <p>Click the below buttons to control the image movement</p>
+         <input type="button" class="button" value="Start" onclick="startMovement();" />
+         <input type="button" class="button" value="Stop" onclick="stopMovement();" />
+      </div>
+   </form>
+</body>
+</html>

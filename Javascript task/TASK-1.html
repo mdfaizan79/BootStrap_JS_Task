@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Reversal</title>
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color:black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 120px;
+    padding: 20px;
+    background-color: #4382e0;
+background-image: linear-gradient(160deg, #e97312 20%, #1ca72f 80%);
+
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+}
+
+p {
+    text-align: center;
+    margin-top: 0px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #1071b2;
+    color: #ffffffc0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0f1adde0;
+}
+
+#result {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+#heading1{
+    text-shadow: 2px 2px 1px rgb(236, 186, 37);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="heading1"> Reverse the Number </h1>
+        <p>Enter the number below:</p>
+        <input type="text" id="userInput" placeholder="Enter the number">
+        <button id="reverseButton">Reverse</button>
+        <p id="result"></p>
+    </div>
+
+
+
+    <!-------------------------------------------------javascript------------------------------------ -->
+    <script src="script1.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const userInput = document.getElementById("userInput");
+    const reverseButton = document.getElementById("reverseButton");
+    const result = document.getElementById("result");
+
+    reverseButton.addEventListener("click", function () {
+        const inputText = userInput.value.trim();
+
+        if (inputText === "") {
+            result.textContent = "Invalid input. Please enter a number.";
+        } else {
+            const number = parseInt(inputText);
+
+            if (isNaN(number)) {
+                result.textContent = "Invalid input. Please enter a valid number.";
+            } else {
+                const reversedNumber = parseInt(
+                    number.toString().split("").reverse().join("")
+                );
+                result.textContent = `Reversed number: ${reversedNumber}`;
+            }
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

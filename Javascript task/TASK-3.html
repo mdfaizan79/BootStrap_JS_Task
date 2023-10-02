@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication and Division Calculator</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color:black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 120px;
+    padding: 20px;
+    background-color: #F4D03F;
+background-image: linear-gradient(132deg, #e656c4 0%, #21e4bd 100%);
+
+
+    border-radius: 5px;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: blue;
+}
+
+p {
+    text-align: center;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    flex: 2;
+    padding: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.operation-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.operation-button:hover {
+    background-color: #0056b3;
+    border: 2px solid rgb(18, 18, 17);
+}
+
+#result {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiplication & Division Calculator</h1>
+        <!-- <p>Enter two numbers:</p> -->
+        <div class="input-container">
+            <label for="num1">1st Number: </label>
+            <input type="number" id="num1" placeholder="Enter the number">
+        </div>
+        <div class="input-container">
+            <label for="num2">2nd Number: </label>
+            <input type="number" id="num2" placeholder="Enter the number">
+        </div>
+        <div class="button-container">
+            <button class="operation-button" onclick="calculate(false)">Multiply</button>
+            <button class="operation-button" onclick="calculate(true)">Divide</button>
+        </div>
+        <p id="result"></p>
+    </div>
+  
+
+    <script>
+        function calculate(isDivision = false) {
+    const num1 = parseFloat(document.getElementById("num1").value);
+    const num2 = parseFloat(document.getElementById("num2").value);
+    const resultElement = document.getElementById("result");
+
+    if (isNaN(num1) || isNaN(num2)) {
+        resultElement.textContent = "Invalid input. Please enter valid numbers.";
+        return;
+    }
+
+    let result;
+    if (isDivision) {
+        if (num2 === 0) {
+            resultElement.textContent = "Division by zero is not allowed.";
+            return;
+        }
+        result = num1 / num2;
+    } else {
+        result = num1 * num2;
+    }
+
+    resultElement.textContent = `The result is: ${result}`;
+}
+
+    </script>
+</body>
+</html>

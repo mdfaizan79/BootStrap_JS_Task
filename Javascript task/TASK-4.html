@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time Display</title>
+   
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 190px;
+    padding: 20px;
+    background-color: #FF3CAC;
+background-image: linear-gradient(225deg, #52f488 0%, #e2c835 50%, #ab33f1 100%);
+
+    border-radius: 5px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#display {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="dateButton">Show Date </button>
+        <button id="timeButton">Show Time </button>
+        <p id="display"></p>
+    </div>
+   
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const dateButton = document.getElementById("dateButton");
+    const timeButton = document.getElementById("timeButton");
+    const display = document.getElementById("display");
+
+    dateButton.addEventListener("click", function () {
+        const currentDate = new Date();
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const formattedDate = currentDate.toLocaleDateString(undefined, options);
+        display.textContent = `\n${formattedDate}`;
+    });
+
+    timeButton.addEventListener("click", function () {
+        const currentTime = new Date();
+        const formattedTime = currentTime.toString();
+        display.textContent = `\n${formattedTime}`;
+    });
+});
+
+
+    </script>
+</body>
+</html>
